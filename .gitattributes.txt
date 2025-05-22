@@ -1,0 +1,22 @@
+# Set default behavior to automatically normalize line endings to LF
+* text=auto eol=lf
+
+# Explicitly set LF endings for Python and data/config files
+*.py     text eol=lf
+*.json   text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+*.csv    text eol=lf
+*.txt    text eol=lf
+*.md     text eol=lf
+*.sh     text eol=lf
+
+# Binary files - keep as-is
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.pdf    binary
+*.zip    binary
+*.exe    binary
+*.dll    binary
