@@ -11,6 +11,7 @@ import pytest
 import logging
 
 # Logging configuration
+# basicConfig() provides a quick way to configure the root logger that handles many use cases.
 logging.basicConfig(
     filename="Logs/ETLLogs.log",
     filemode="w",  # a  for append the log file and w for overwrite
@@ -18,6 +19,7 @@ logging.basicConfig(
     level=logging.INFO
 )
 logger = logging.getLogger(__name__)
+#simply creating a module level logger with getLogger(__name__)
 
 
 @pytest.mark.usefixtures("print_message", "connect_to_mysql_db", "connect_to_pg_db")

@@ -72,7 +72,23 @@ def check_file_size_for_data(file_path):
         else:
             return False
     except Exception as e:
-        logger.error(f"File {file_path} does not have data {e}")
+        logger.error(f"File {file_path} does not have any data{e}")
+
+    def verify_expected_from_files_to_actual_from_db(file_path, file_type, query_actual, db_engine):
+        try:
+            if file_type == "csv":
+                df_expected = pd.read_csv(file_path)
+            elif file_type == "json":
+                df_expected = pd.read_json(file_path)
+            elif file_type == "xml":
+                df_expected = pd.read_xml(file_path, xpath=".//item")
+            else:
+                raise ValueError(f"unsupported file type passed {file_type}")
+
+            df_actual = pd.read_sql(query_actual, db_engine)
+            assert df_actual.equals(df_expected), "data does not match between expected and actual"
+        except Exception as e:
+            logger.error(f"data extraction from sales didn't happen correctly{e}")
 
 
 def check_duplicates_rows(file_type, file_path):
